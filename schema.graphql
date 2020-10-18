@@ -1,0 +1,33 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+type Event @entity {
+  id: ID! @id
+  title: String @column
+}
+input EventCreationParams {
+  title: String!
+}
+type Query {
+  events(id: ID): [Event]! @auth(required: true)
+  login(username: String!, password: String!): String!
+}
+type Mutation {
+  addEvent(eventData: EventCreationParams!): Event!
+  signup(userData: UserCreationParams!): Boolean!
+}
+type User @entity {
+  id: ID! @id
+  name: String! @column
+  email: String! @column
+  username: String! @column
+  password: String! @column
+}
+input UserCreationParams {
+  name: String!
+  email: String!
+  username: String!
+  password: String!
+}
+directive @auth(required: Boolean = false) on FIELD_DEFINITION

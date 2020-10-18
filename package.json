@@ -1,0 +1,56 @@
+{
+  "name": "graphql-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:gql": "graphql-codegen --config codegen.yml",
+    "build:gql:watch": "graphql-codegen --watch --config codegen.yml",
+    "build:ts": "tsc",
+    "build": "npm run build:gql && npm run build:ts",
+    "clean": "rm -rf dist src/**/generated",
+    "dev": "concurrently -n typescript,graphql \"tsnd src/index.ts\" npm:build:gql:watch",
+    "predev": "npm run build:gql"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chegaai/graphql-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chegaai/graphql-backend/issues"
+  },
+  "homepage": "https://github.com/chegaai/graphql-backend#readme",
+  "devDependencies": {
+    "@graphql-codegen/cli": "1.17.10",
+    "@graphql-codegen/introspection": "^1.18.0",
+    "@graphql-codegen/schema-ast": "^1.17.8",
+    "@graphql-codegen/typescript": "1.17.10",
+    "@graphql-codegen/typescript-resolvers": "1.17.10",
+    "@typescript-eslint/eslint-plugin": "^4.4.1",
+    "@typescript-eslint/parser": "^4.4.1",
+    "concurrently": "^5.3.0",
+    "eslint": "^7.11.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "prettier": "^2.1.2",
+    "ts-node-dev": "^1.0.0",
+    "typescript": "^4.0.3",
+    "@types/mongodb": "^3.5.28"
+  },
+  "dependencies": {
+    "@graphql-codegen/typescript-mongodb": "1.17.8",
+    "apollo-server-express": "^2.18.2",
+    "express": "^4.17.1",
+    "graphql": "^15.3.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.6.2",
+    "sugar-env": "^1.5.13"
+  }
+}
